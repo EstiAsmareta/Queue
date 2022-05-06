@@ -1,0 +1,63 @@
+//G1A021042
+//Home Task : Write the algorithm of queue mechanism using Single Linked List
+
+// Queue menggunakan sistem FIFO (First In First Out) sehingga penambahan data antrian dilakukan di akhir (tail) list,
+dengan mengggunakan algoritma addLast() pada single linked list
+void enqueue(tipe variabel){
+    if(isEmpty()){ //Jika antrian kosong maka elemen akan menjadi elemen pertama dan terakhir di dalam list,
+    sehingga head next bernilai kosong.
+        head = new antrian();
+        head->variabel = variabel;
+        head->next = NULL;
+        tail = head;
+        cout << "berhasil menambahkan elemen baru" << endl;
+    } else{ // Jika antrian tidak kosong maka elemen akan ditambahkan di akhir list yaitu ekor,
+    dengan nilai next tail yaitu kosong atau Null.
+        newNode = new antrian();
+        newNode->variabel = variabel;
+        newNode->next = NULL;
+        tail->next = newNode;
+        tail = newNode;
+        cout << "berhasil menambahkan elemen baru" << endl;
+    }
+}
+
+
+// pengeluaran data antrian di awal antrian (head) dengan menggunakan algoritma removeFisrt() pada single linked list
+void dequeue(){
+    if(isEmpty()){ //Jika antrian kosong maka algoritma removeFirst() tidak dapat digunakan.
+        cout << "Antrian kosong" << endl;
+    } else{ //Jika antrian tidak kosong maka elemen pertama (head) pada list akan di hapus
+    dan elemen berikutnya akan ditunjuk sebagai head yang baru.
+        del = head;
+        head = head->next;
+        del->next = NULL;
+        delete del; 
+        cout << "berhasil mengeluarkan elemen pertama" << endl;
+    }
+}
+
+// membuat fungsi untuk menghitung jumlah node (elemen) pada queue
+int countAntrian(){
+    if(head == NULL){
+        return 0;
+    } else{
+        int counter = 0; //perhitungan node dimulai dari 0
+        cur = head;
+        while(cur != NULL){ //selama poimter bantu tidak sama dengan kosong/Nil maka 
+        perulangan akan dilakukan.
+            counter++;//nilai counter akan bertambah seiring dengan banyak node yang ada.
+            cur = cur->next;
+        }
+        return counter;
+    }
+}
+
+// membuat fungsi untuk mengecek bahwa antrian kosong atau tidak
+bool isEmpty(){
+    if(countAntrian() == 0){ // jika method menghitung banyak antrian sama dengan Null maka boolean bernilai benar.
+        return true;
+    } else{
+        return false;
+    }
+}
